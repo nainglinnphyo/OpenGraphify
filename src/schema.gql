@@ -2,13 +2,24 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Query {
-  getUser(id: String!): User!
+type LoginResult {
+  token: String!
+  user: User!
 }
 
-"""user"""
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
+type Query {
+  userLogin(user: LoginUserInput!): LoginResult!
+}
+
+"""user model"""
 type User {
+  email: String!
   id: ID!
   name: String!
-  users: [User!]!
+  password: String!
 }
