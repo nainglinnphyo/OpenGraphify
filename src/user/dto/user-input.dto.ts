@@ -7,28 +7,28 @@ export class LoginUserInput {
     email?: string;
 
     @Field(() => String)
-    password: string;
+    password: string | undefined;
 }
 
 @ObjectType({ description: 'user model' })
 export class User {
     @Field(type => ID)
-    id: string;
+    id!: string;
 
     @Field()
-    name: string;
+    name!: string;
 
     @Field(() => String)
     email?: string;
 
     @Field(() => String)
-    password: string;
+    password!: string;
 }
 
 @ObjectType()
 export class LoginResult {
     @Field(() => User)
-    user: User;
+    user: User | undefined ;
     @Field(() => String)
-    token: string;
+    token!: string;
 }

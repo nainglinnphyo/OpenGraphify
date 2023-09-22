@@ -13,6 +13,7 @@ input LoginUserInput {
 }
 
 type Query {
+  refreshToken: String!
   userLogin(user: LoginUserInput!): LoginResult!
 }
 

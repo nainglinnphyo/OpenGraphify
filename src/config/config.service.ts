@@ -27,7 +27,6 @@ export class ConfigService {
         const envVarsSchema: Joi.ObjectSchema = Joi.object({
             JWT_SECRET: Joi.string().required(),
             JWT_EXPIRES_IN: Joi.number(),
-            DATABASE_URL: Joi.string().required(),
             NODE_ENV: Joi.string().required(),
         });
 
@@ -49,6 +48,6 @@ export class ConfigService {
     }
 
     get jwtSecret(): string {
-        return this.envConfig.JWT_SECRET;
+        return this.envConfig.JWT_SECRET || '';
     }
 }
