@@ -8,6 +8,7 @@ import { join } from 'path';
 import { AuthModule } from './auth/auth.module';
 import { ConfigService } from './config/config.service';
 import { ConfigModule } from './config/config.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ConfigModule } from './config/config.module';
     }),
     AuthModule,
     ConfigModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

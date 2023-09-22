@@ -28,7 +28,19 @@ export class User {
 @ObjectType()
 export class LoginResult {
     @Field(() => User)
-    user: User | undefined ;
+    user: User | undefined;
     @Field(() => String)
     token!: string;
+}
+
+@ObjectType()
+export class BlogResult {
+    @Field(() => String)
+    title!: String;
+    @Field(() => String)
+    content!: string;
+    @Field(() => String)
+    author!: string;
+    @Field(() => Date)
+    date!: Date;
 }
