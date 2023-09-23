@@ -3,12 +3,19 @@ import { LoginUserInput, RegisterUserInput, UserRegisterResponse } from 'src/use
 import { LoginResponse } from './interface/auth.interface';
 import { PrismaService } from 'src/prisma.service';
 import { JwtService } from '@nestjs/jwt';
-import { ConfigService } from 'src/config/config.service';
+import { ConfigService } from '@app/config/config.service';
 import * as bcrypt from 'bcrypt';
+import { join } from 'path';
+import { EmailService } from '@app/email/email.service';
 
 @Injectable()
 export class AuthService {
-    constructor(private prismaService: PrismaService, private jwtService: JwtService, private configService: ConfigService) { }
+    constructor(
+        private prismaService: PrismaService,
+        private jwtService: JwtService,
+        private configService: ConfigService,
+        private emailService: EmailService
+    ) { }
 
     async loginUser(user: LoginUserInput): Promise<LoginResponse> {
         const { email, password } = user;
@@ -35,15 +42,22 @@ export class AuthService {
     async registerUser(userInput: RegisterUserInput): Promise<UserRegisterResponse> {
         try {
             const { name, email, password } = userInput;
-            const existingUser = await this.prismaService.user.findFirst({ where: { email } });
+            const existingUser = await this.prismaService.user.findFirst({ where: { email, isActive: true } });
 
             if (existingUser) {
                 throw new ConflictException('Email already in use');
             }
-            // const password = this.generateRandomPassword(12)
-            // console.log(password)
-            return this.prismaService.user.create({
-                data: {
+
+            return this.prismaService.user.upsert({
+                where: { email },
+                create: {
+                    email: email,
+                    name,
+                    password: await bcrypt.hash(password, 10),
+                    isActive: false,
+                    lastUpdated: new Date()
+                },
+                update: {
                     email: email,
                     name,
                     password: await bcrypt.hash(password, 10),
@@ -52,6 +66,10 @@ export class AuthService {
                 }
             })
                 .then((createUser) => {
+                    // const link =
+                    this.emailService.sendMail(createUser.email, 'Account Confirmation Required - Please Verify Your Email', `${join(__dirname)}/../../templates/confirm-template.hbs`, { link: 'https://google.com' })
+                        .then((d) => console.log(d))
+                        .catch((e) => console.log(e))
                     return {
                         email: createUser.email,
                         name: createUser.name,

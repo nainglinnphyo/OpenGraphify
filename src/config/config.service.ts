@@ -28,6 +28,8 @@ export class ConfigService {
             JWT_SECRET: Joi.string().required(),
             JWT_EXPIRES_IN: Joi.number(),
             NODE_ENV: Joi.string().required(),
+            EMAIL_USERNAME: Joi.string().required(),
+            EMAIL_PASSWORD: Joi.string().required(),
         });
 
         const { error, value: validatedEnvConfig } =
@@ -45,6 +47,18 @@ export class ConfigService {
             return +this.envConfig.JWT_EXPIRES_IN;
         }
         return undefined;
+    }
+
+    get emailUserName(): string | undefined {
+        return this.envConfig.EMAIL_USERNAME || '';
+    }
+
+    get emailPassword(): string | undefined {
+        return this.envConfig.EMAIL_PASSWORD || '';
+    }
+
+    get nodeEnv(): string | undefined {
+        return this.envConfig.NODE_ENV || ''
     }
 
     get jwtSecret(): string {

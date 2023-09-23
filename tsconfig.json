@@ -19,5 +19,16 @@
     "noFallthroughCasesInSwitch": false,
     "strict": true,
     "noUncheckedIndexedAccess": true,
+    "paths": {
+      "@app/*": [
+        "./src/*"
+      ],
+      "@helpers/*": [
+        "./src/helpers/*"
+      ],
+      "@decorators/*": [
+        "./src/decorators/*"
+      ]
+    }
   }
 }

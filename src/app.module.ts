@@ -8,6 +8,8 @@ import { join } from 'path';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from './config/config.module';
 import { UserModule } from './user/user.module';
+import { EmailModule } from './email/email.module';
+import { EmailService } from './email/email.service';
 
 @Module({
   imports: [
@@ -17,6 +19,7 @@ import { UserModule } from './user/user.module';
       sortSchema: true,
     }),
     AuthModule,
+    EmailModule,
     ConfigModule,
     UserModule,
   ],
