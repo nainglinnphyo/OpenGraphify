@@ -18,7 +18,6 @@ export class EmailService {
         });
     }
     async sendMail(to: string, subject: string, templatePath: string, data: any) {
-        // console.log(this.configService.emailUserName)
         const html = this.compileTemplate(templatePath, data);
         const mailOptions = {
             from: 'graphifyopen@gmail.com',
