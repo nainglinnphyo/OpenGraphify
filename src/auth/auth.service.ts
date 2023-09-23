@@ -68,8 +68,6 @@ export class AuthService {
                 .then((createUser) => {
                     // const link =
                     this.emailService.sendMail(createUser.email, 'Account Confirmation Required - Please Verify Your Email', `${join(__dirname)}/../../templates/confirm-template.hbs`, { link: 'https://google.com' })
-                        .then((d) => console.log(d))
-                        .catch((e) => console.log(e))
                     return {
                         email: createUser.email,
                         name: createUser.name,
