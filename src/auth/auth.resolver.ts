@@ -1,7 +1,7 @@
 import { Args, Resolver, Query, ResolveField, Parent, Context } from '@nestjs/graphql';
 import { AuthService } from './auth.service';
 import { LoginResponse } from './interface/auth.interface';
-import { LoginResult, LoginUserInput, User } from 'src/user/dto/user-input.dto';
+import { LoginResult, LoginUserInput, RegisterUserInput, User, UserRegisterResponse } from 'src/user/dto/user-input.dto';
 import { UnauthorizedException, UseGuards } from '@nestjs/common';
 import { CurrentUser } from 'src/decorators/get-user.decorator';
 import { JwtAuthGuard } from './guard/jwt-auth.guard';
@@ -15,11 +15,15 @@ export class AuthResolver {
     return this.authService.loginUser(user);
   }
 
+  @Query(() => UserRegisterResponse)
+  async userRegister(@Args('user') user: RegisterUserInput): Promise<UserRegisterResponse> {
+    return this.authService.registerUser(user);
+  }
+
   @UseGuards(JwtAuthGuard)
   @Query(() => String)
   async refreshToken(@Context('req') request: any): Promise<string> {
     const user: User = request.user;
-    // console.log(user)
     if (!user)
       throw new UnauthorizedException(
         'Could not log-in with the provided credentials',
@@ -31,10 +35,10 @@ export class AuthResolver {
     );
   }
 
-  // @UseGuards(JwtAuthGuard)
-  // @Query(() => { })
-  // async me(@CurrentUser() user: User) {
-  //   return user;
-  // }
+  @UseGuards(JwtAuthGuard)
+  @Query(() => User)
+  async me(@CurrentUser() user: User) {
+    return user;
+  }
 
 }

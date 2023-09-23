@@ -24,24 +24,18 @@ input LoginUserInput {
   password: String!
 }
 
-"""Post model"""
-type PostModel {
-  content: String!
-  id: ID!
-  title: String!
-}
-
-type PostResult {
-  id: ID!
-  title: String!
-}
-
 type Query {
-  getAllPost: [PostResult!]!
   getBlog: BlogResult!
-  getOnePost(id: String!): PostModel!
+  me: User!
   refreshToken: String!
   userLogin(user: LoginUserInput!): LoginResult!
+  userRegister(user: RegisterUserInput!): UserRegisterResponse!
+}
+
+input RegisterUserInput {
+  email: String!
+  name: String!
+  password: String!
 }
 
 """user model"""
@@ -50,4 +44,11 @@ type User {
   id: ID!
   name: String!
   password: String!
+}
+
+"""user register response"""
+type UserRegisterResponse {
+  email: String!
+  message: String!
+  name: String!
 }

@@ -1,14 +1,43 @@
 import { Field, ID, InputType, ObjectType } from "@nestjs/graphql";
 
+
+@ObjectType()
+export class Response {
+    @Field(() => String)
+    message!: string;
+}
 @InputType()
 export class LoginUserInput {
 
     @Field(() => String)
-    email?: string;
+    email!: string;
 
     @Field(() => String)
-    password: string | undefined;
+    password!: string;
 }
+
+@InputType()
+export class RegisterUserInput {
+    @Field(() => String)
+    name!: string;
+
+    @Field(() => String)
+    email!: string;
+
+    @Field(() => String)
+    password!: string;
+}
+
+@ObjectType({ description: 'user register response' })
+export class UserRegisterResponse extends Response {
+    @Field(() => String)
+    name!: string;
+
+    @Field(() => String)
+    email!: string;
+}
+
+
 
 @ObjectType({ description: 'user model' })
 export class User {
