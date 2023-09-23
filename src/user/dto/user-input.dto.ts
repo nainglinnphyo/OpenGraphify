@@ -23,6 +23,7 @@ export class User {
 
     @Field(() => String)
     password!: string;
+
 }
 
 @ObjectType()
@@ -44,3 +45,4 @@ export class BlogResult {
     @Field(() => Date)
     date!: Date;
 }
+

@@ -31,7 +31,7 @@ export class AuthService {
     }
 
     async validateUser(email: string) {
-        return this.prismaService.user.findFirst({ where: { email: email } })
+        return this.prismaService.user.findFirst({ where: { email: email }, select: { id: true, email: true } })
     }
 
     // Create a JWT token

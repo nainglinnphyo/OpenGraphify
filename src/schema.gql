@@ -24,8 +24,22 @@ input LoginUserInput {
   password: String!
 }
 
+"""Post model"""
+type PostModel {
+  content: String!
+  id: ID!
+  title: String!
+}
+
+type PostResult {
+  id: ID!
+  title: String!
+}
+
 type Query {
+  getAllPost: [PostResult!]!
   getBlog: BlogResult!
+  getOnePost(id: String!): PostModel!
   refreshToken: String!
   userLogin(user: LoginUserInput!): LoginResult!
 }
