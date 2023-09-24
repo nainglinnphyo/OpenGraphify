@@ -7,11 +7,10 @@ import { ConfigService } from '@app/config/config.service';
 
 @Resolver()
 export class UserResolver {
-  constructor(private readonly userService: UserService,private configService:ConfigService) { }
+  constructor(private readonly userService: UserService) { }
 
   @Query(() => BlogResult)
   async getBlog() {
-    console.log(this.configService.emailPassword)
     return generateFakePost()
   }
 }
