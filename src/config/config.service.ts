@@ -1,26 +1,26 @@
-import { Injectable } from '@nestjs/common';
-import * as fs from 'fs';
-import * as Joi from 'joi';
-import * as dotenv from 'dotenv';
+import { Injectable } from '@nestjs/common'
+import * as fs from 'fs'
+import * as Joi from 'joi'
+import * as dotenv from 'dotenv'
 
 export interface EnvConfig {
-    [key: string]: string;
+    [key: string]: string
 }
 
 @Injectable()
 export class ConfigService {
-    private readonly envConfig: EnvConfig;
+    private readonly envConfig: EnvConfig
 
     constructor(public filePath: string) {
-        let file: Buffer | undefined;
+        let file: Buffer | undefined
         try {
-            file = fs.readFileSync(filePath);
+            file = fs.readFileSync(filePath)
         } catch (error) {
-            file = fs.readFileSync('development.env');
+            file = fs.readFileSync('development.env')
         }
 
-        const config = dotenv.parse(file);
-        this.envConfig = this.validateInput(config);
+        const config = dotenv.parse(file)
+        this.envConfig = this.validateInput(config)
     }
 
     private validateInput(envConfig: EnvConfig): EnvConfig {
@@ -30,31 +30,31 @@ export class ConfigService {
             NODE_ENV: Joi.string().required(),
             EMAIL_USERNAME: Joi.string().required(),
             EMAIL_PASSWORD: Joi.string().required(),
-        });
+        })
 
         const { error, value: validatedEnvConfig } =
-            envVarsSchema.validate(envConfig);
+            envVarsSchema.validate(envConfig)
         if (error) {
             throw new Error(
-                `Config validation error in your env file: ${error.message}`,
-            );
+                `Config validation error in your env file: ${error.message}`
+            )
         }
-        return validatedEnvConfig;
+        return validatedEnvConfig
     }
 
     get jwtExpiresIn(): number | undefined {
         if (this.envConfig.JWT_EXPIRES_IN) {
-            return +this.envConfig.JWT_EXPIRES_IN;
+            return +this.envConfig.JWT_EXPIRES_IN
         }
-        return undefined;
+        return undefined
     }
 
     get emailUserName(): string | undefined {
-        return this.envConfig.EMAIL_USERNAME || '';
+        return this.envConfig.EMAIL_USERNAME || ''
     }
 
     get emailPassword(): string | undefined {
-        return this.envConfig.EMAIL_PASSWORD || '';
+        return this.envConfig.EMAIL_PASSWORD || ''
     }
 
     get nodeEnv(): string | undefined {
@@ -62,6 +62,6 @@ export class ConfigService {
     }
 
     get jwtSecret(): string {
-        return this.envConfig.JWT_SECRET || '';
+        return this.envConfig.JWT_SECRET || ''
     }
 }
