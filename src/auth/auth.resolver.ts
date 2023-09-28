@@ -3,8 +3,8 @@ import { AuthService } from './auth.service';
 import { LoginResponse } from './interface/auth.interface';
 import { LoginResult, LoginUserInput, RegisterUserInput, User, UserRegisterResponse } from 'src/user/dto/user-input.dto';
 import { UnauthorizedException, UseGuards } from '@nestjs/common';
-import { CurrentUser } from 'src/decorators/get-user.decorator';
 import { JwtAuthGuard } from './guard/jwt-auth.guard';
+import { CurrentUser } from '@app/decorators/get-auth-user.decorator';
 
 @Resolver('Auth')
 export class AuthResolver {

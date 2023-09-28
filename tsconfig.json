@@ -28,6 +28,9 @@
       ],
       "@decorators/*": [
         "./src/decorators/*"
+      ],
+      "@user/*": [
+        "./src/user/*"
       ]
     }
   }
