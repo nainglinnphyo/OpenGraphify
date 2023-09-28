@@ -39,6 +39,6 @@ This project is licensed under the MIT License.
 
 ## 👥 Maintainers
 
-- [Naing Linn Phyo]
+- [Naing Linn Phyo](https://nainglinnphyo.vercel.app)
 
 Happy GraphQL coding! 🚀
