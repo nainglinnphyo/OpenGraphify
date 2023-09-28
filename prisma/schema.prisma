@@ -3,19 +3,19 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
 }
 
 model user {
-  id           String       @id @default(uuid())
-  name         String
-  email        String       @unique
-  password     String
-  isActive     Boolean      @default(true)
+  id             String       @id @default(uuid())
+  name           String
+  email          String       @unique
+  password       String
+  isActive       Boolean      @default(true)
   organizationId String
-  organization organization @relation(references: [id], fields: [organizationId])
-  lastUpdated  DateTime?
+  organization   organization @relation(references: [id], fields: [organizationId])
+  lastUpdated    DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

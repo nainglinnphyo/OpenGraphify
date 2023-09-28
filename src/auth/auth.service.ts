@@ -41,7 +41,7 @@ export class AuthService {
 
     async registerUser(userInput: RegisterUserInput): Promise<UserRegisterResponse> {
         try {
-            const { name, email, password } = userInput;
+            const { name, email, password, organization } = userInput;
             const existingUser = await this.prismaService.user.findFirst({ where: { email, isActive: true } });
 
             if (existingUser) {
@@ -51,6 +51,16 @@ export class AuthService {
             return this.prismaService.user.upsert({
                 where: { email },
                 create: {
+                    organization: {
+                        connectOrCreate: {
+                            where: {
+                                name: organization
+                            },
+                            create: {
+                                name: organization
+                            }
+                        }
+                    },
                     email: email,
                     name,
                     password: await bcrypt.hash(password, 10),

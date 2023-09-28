@@ -35,6 +35,7 @@ type Query {
 input RegisterUserInput {
   email: String!
   name: String!
+  organization: String!
   password: String!
 }
 

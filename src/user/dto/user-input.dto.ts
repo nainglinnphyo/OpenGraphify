@@ -26,6 +26,9 @@ export class RegisterUserInput {
 
     @Field(() => String)
     password!: string;
+
+    @Field(() => String)
+    organization!: string;
 }
 
 @ObjectType({ description: 'user register response' })
