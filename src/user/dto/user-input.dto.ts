@@ -3,54 +3,54 @@ import { Field, ID, InputType, ObjectType } from '@nestjs/graphql'
 @ObjectType()
 export class Response {
     @Field(() => String)
-    message!: string
+    message: string
 }
 @InputType()
 export class LoginUserInput {
     @Field(() => String)
-    email!: string
+    email: string
 
     @Field(() => String)
-    password!: string
+    password: string
 }
 
 @InputType()
 export class RegisterUserInput {
     @Field(() => String)
-    name!: string
+    name: string
 
     @Field(() => String)
-    email!: string
+    email: string
 
     @Field(() => String)
-    password!: string
+    password: string
 
     @Field(() => String)
-    organization!: string
+    organization: string
 }
 
 @ObjectType({ description: 'user register response' })
 export class UserRegisterResponse extends Response {
     @Field(() => String)
-    name!: string
+    name: string
 
     @Field(() => String)
-    email!: string
+    email: string
 }
 
 @ObjectType({ description: 'user model' })
 export class User {
     @Field((type) => ID)
-    id!: string
+    id: string
 
     @Field()
-    name!: string
+    name: string
 
     @Field(() => String)
     email?: string
 
     @Field(() => String)
-    password!: string
+    password: string
 }
 
 @ObjectType()
@@ -58,17 +58,17 @@ export class LoginResult {
     @Field(() => User)
     user: User | undefined
     @Field(() => String)
-    token!: string
+    token: string
 }
 
 @ObjectType()
 export class BlogResult {
     @Field(() => String)
-    title!: String
+    title: String
     @Field(() => String)
-    content!: string
+    content: string
     @Field(() => String)
-    author!: string
+    author: string
     @Field(() => Date)
-    date!: Date
+    date: Date
 }
