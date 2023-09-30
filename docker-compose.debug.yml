@@ -1,8 +1,8 @@
 version: '3.4'
 
 services:
-  stockmanagement:
-    image: stockmanagement
+  opengraphify:
+    image: opengraphify
     build:
       context: .
       dockerfile: ./Dockerfile
