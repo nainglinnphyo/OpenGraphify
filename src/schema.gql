@@ -2,18 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type BlogResult {
-  author: String!
-  content: String!
-  date: DateTime!
-  title: String!
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
 type LoginResult {
   token: String!
   user: User!
@@ -25,7 +13,6 @@ input LoginUserInput {
 }
 
 type Query {
-  getBlog: BlogResult!
   me: User!
   refreshToken: String!
   userLogin(user: LoginUserInput!): LoginResult!
