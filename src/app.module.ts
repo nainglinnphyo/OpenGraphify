@@ -5,11 +5,9 @@ import { LoggerMiddleware } from './middleware/logger.middleware'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { GraphQLModule } from '@nestjs/graphql'
 import { join } from 'path'
-import { AuthModule } from './auth/auth.module'
 import { ConfigModule } from './config/config.module'
 import { UserModule } from './user/user.module'
 import { EmailModule } from './email/email.module'
-import { EmailService } from './email/email.service'
 
 @Module({
     imports: [
@@ -18,7 +16,6 @@ import { EmailService } from './email/email.service'
             autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
             sortSchema: true,
         }),
-        AuthModule,
         EmailModule,
         ConfigModule,
         UserModule,

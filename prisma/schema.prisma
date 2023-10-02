@@ -8,19 +8,21 @@ datasource db {
 }
 
 model user {
-  id          String    @id @default(uuid())
-  name        String
-  email       String    @unique
-  password    String
-  isActive    Boolean   @default(true)
-  // organizationId String
-  // organization   organization @relation(references: [id], fields: [organizationId])
-  lastUpdated DateTime?
+  id             String       @id @default(uuid())
+  name           String
+  email          String       @unique
+  password       String
+  isActive       Boolean      @default(true)
+  gender         GENDER       @default(MALE)
+  organizationId String
+  organization   organization @relation(references: [id], fields: [organizationId])
+  lastUpdated    DateTime?
 
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
-  organization   organization? @relation(fields: [organizationId], references: [id])
-  organizationId String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  todo      todo[]
+  post      post[]
+  comment   comment[]
 
   @@map("users")
 }
@@ -36,4 +38,53 @@ model organization {
   @@map("organizations")
 }
 
+model address {
+  id        String   @id @default(uuid())
+  street    String
+  city      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("address")
+}
+
+model todo {
+  id         String   @id @default(uuid())
+  task       String
+  isComplete Boolean  @default(false)
+  userId     String
+  user       user     @relation(references: [id], fields: [userId])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("todos")
+}
+
+model post {
+  id        String   @id @default(uuid())
+  title     String
+  body      String
+  userId    String
+  user      user     @relation(references: [id], fields: [userId])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("posts")
+}
+
+model comment {
+  id        String   @id @default(uuid())
+  body      String
+  userId    String
+  user      user     @relation(references: [id], fields: [userId])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("comments")
+}
+
 // Enumeration
+enum GENDER {
+  FEMALE
+  MALE
+}
