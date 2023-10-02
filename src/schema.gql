@@ -2,41 +2,33 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type LoginResult {
-  token: String!
-  user: User!
-}
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
-input LoginUserInput {
-  email: String!
-  password: String!
+"""User Model"""
+type Organization {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
 }
 
 type Query {
-  me: User!
-  refreshToken: String!
-  userLogin(user: LoginUserInput!): LoginResult!
-  userRegister(user: RegisterUserInput!): UserRegisterResponse!
+  findAllUser: [User!]!
 }
 
-input RegisterUserInput {
-  email: String!
-  name: String!
-  organization: String!
-  password: String!
-}
-
-"""user model"""
+"""User Model"""
 type User {
+  createdAt: DateTime!
   email: String!
   id: ID!
+  isActive: Boolean!
+  lastUpdated: DateTime!
   name: String!
+  organization: Organization!
+  organizationId: String!
   password: String!
-}
-
-"""user register response"""
-type UserRegisterResponse {
-  email: String!
-  message: String!
-  name: String!
+  updatedAt: DateTime!
 }
