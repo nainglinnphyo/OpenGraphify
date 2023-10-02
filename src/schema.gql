@@ -2,27 +2,46 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateOrganizationInput {
+  name: String!
+}
+
+input CreateUserInput {
+  email: String!
+  gender: GENDER
+  name: String!
+  organization: CreateOrganizationInput!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
 
+enum GENDER {
+  FEMALE
+  MALE
+}
+
+type Mutation {
+  createUser(createData: CreateUserInput!): User!
+}
+
 """User Model"""
 type Organization {
-  createdAt: DateTime!
   id: ID!
   name: String!
-  updatedAt: DateTime!
 }
 
 type Query {
   findAllUser: [User!]!
+  findUserById(id: String!): User!
 }
 
 """User Model"""
 type User {
-  createdAt: DateTime!
   email: String!
+  gender: GENDER
   id: ID!
   isActive: Boolean!
   lastUpdated: DateTime!
@@ -30,5 +49,4 @@ type User {
   organization: Organization!
   organizationId: String!
   password: String!
-  updatedAt: DateTime!
 }
