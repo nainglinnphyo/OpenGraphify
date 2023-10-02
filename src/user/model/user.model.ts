@@ -1,20 +1,14 @@
-import { Field, ID, ObjectType } from "@nestjs/graphql";
-
+import { Field, ID, ObjectType, registerEnumType } from "@nestjs/graphql";
+import { GENDER } from "./enum";
 
 @ObjectType({ description: "User Model" })
 export class Organization {
 
     @Field(type => ID)
-    id: String | undefined;
+    id: string | undefined;
 
     @Field(() => String)
-    name: String | undefined
-
-    @Field(() => Date)
-    createdAt?: Date | undefined
-
-    @Field(() => Date)
-    updatedAt?: Date | undefined
+    name: string | undefined
 }
 
 @ObjectType({ description: "User Model" })
@@ -34,6 +28,9 @@ export class User {
     @Field(() => Boolean)
     isActive: boolean | undefined
 
+    @Field(() => GENDER, { nullable: true })
+    gender?: keyof typeof GENDER;
+
     @Field(() => String)
     organizationId: String | undefined
 
@@ -42,10 +39,4 @@ export class User {
 
     @Field(() => Organization)
     organization: Organization
-
-    @Field(() => Date)
-    createdAt?: Date | undefined
-
-    @Field(() => Date)
-    updatedAt?: Date | undefined
 }
