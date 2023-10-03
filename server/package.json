@@ -23,6 +23,9 @@
   "prisma": {
     "seed": "ts-node prisma/seeder.ts"
   },
+  "engines": {
+    "node": ">=16"
+  },
   "dependencies": {
     "@apollo/server": "^4.9.3",
     "@as-integrations/fastify": "^2.1.0",
