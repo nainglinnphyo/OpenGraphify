@@ -25,6 +25,7 @@ enum GENDER {
 
 type Mutation {
   createUser(createData: CreateUserInput!): User!
+  updateUser(updateData: UpdateUserInput!): User!
 }
 
 """User Model"""
@@ -34,8 +35,17 @@ type Organization {
 }
 
 type Query {
+  deleteUser(id: String!): User!
   findAllUser: [User!]!
   findUserById(id: String!): User!
+}
+
+input UpdateUserInput {
+  email: String!
+  gender: GENDER
+  id: String!
+  name: String!
+  organization: CreateOrganizationInput!
 }
 
 """User Model"""

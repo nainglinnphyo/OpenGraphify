@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const prisma_service_1 = require("../prisma.service");
 const common_1 = require("@nestjs/common");
+const exceptions_1 = require("@nestjs/common/exceptions");
 let UserService = exports.UserService = class UserService {
     constructor(prismaService) {
         this.prismaService = prismaService;
@@ -103,6 +104,82 @@ let UserService = exports.UserService = class UserService {
             if (error?.code === "P2002")
                 throw new common_1.ConflictException("User already exists");
             throw new common_1.BadRequestException("Something went wrong");
+        });
+    }
+    async updateUser(dto) {
+        return this.prismaService.user.update({
+            where: {
+                id: dto.id
+            },
+            data: {
+                email: dto.email,
+                name: dto.name,
+                organization: {
+                    upsert: {
+                        where: {
+                            name: dto.organization.name
+                        },
+                        create: {
+                            name: dto.organization.name
+                        },
+                        update: {
+                            name: dto.organization.name
+                        }
+                    }
+                },
+                gender: dto.gender
+            },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                isActive: true,
+                gender: true,
+                lastUpdated: true,
+                organizationId: true,
+                organization: {
+                    select: {
+                        id: true,
+                        name: true
+                    }
+                },
+            }
+        })
+            .then((data) => {
+            return data;
+        })
+            .catch((error) => {
+            if (error?.code === "P2002")
+                throw new common_1.ConflictException("User already exists");
+            throw new common_1.BadRequestException("Something went wrong");
+        });
+    }
+    async deleteUser(id) {
+        return this.prismaService.user.delete({
+            where: {
+                id: id
+            },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                isActive: true,
+                gender: true,
+                lastUpdated: true,
+                organizationId: true,
+                organization: {
+                    select: {
+                        id: true,
+                        name: true
+                    }
+                },
+            }
+        })
+            .then((data) => {
+            return data;
+        })
+            .catch((err) => {
+            throw new exceptions_1.NotFoundException("User not found");
         });
     }
 };

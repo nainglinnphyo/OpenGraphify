@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateUserInput = exports.CreateOrganizationInput = void 0;
+exports.UpdateUserInput = exports.CreateUserInput = exports.CreateOrganizationInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const enum_1 = require("../model/enum");
 let CreateOrganizationInput = exports.CreateOrganizationInput = class CreateOrganizationInput {
@@ -42,4 +42,29 @@ __decorate([
 exports.CreateUserInput = CreateUserInput = __decorate([
     (0, graphql_1.InputType)()
 ], CreateUserInput);
+let UpdateUserInput = exports.UpdateUserInput = class UpdateUserInput {
+};
+__decorate([
+    (0, graphql_1.Field)(() => String),
+    __metadata("design:type", String)
+], UpdateUserInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String),
+    __metadata("design:type", String)
+], UpdateUserInput.prototype, "name", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String),
+    __metadata("design:type", String)
+], UpdateUserInput.prototype, "email", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => enum_1.GENDER, { nullable: true }),
+    __metadata("design:type", Object)
+], UpdateUserInput.prototype, "gender", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => CreateOrganizationInput),
+    __metadata("design:type", CreateOrganizationInput)
+], UpdateUserInput.prototype, "organization", void 0);
+exports.UpdateUserInput = UpdateUserInput = __decorate([
+    (0, graphql_1.InputType)()
+], UpdateUserInput);
 //# sourceMappingURL=user-input.dto.js.map
