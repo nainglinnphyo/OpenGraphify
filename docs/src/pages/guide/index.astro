@@ -1,0 +1,75 @@
+---
+import Header from "../../components/Header.astro";
+import Layout from "../../layouts/Layout.astro";
+import User from "../../content/guide/user.md";
+import Footer from "../../components/Footer.astro";
+---
+
+<Layout title="OG | Guide">
+    <Header />
+    <br />
+    <br />
+    <div class="max-w-4xl justify-around flex flex-col w-full mx-auto px-4">
+        <div class="space-y-3">
+            <h1 class="text-2xl font-bold">Guide</h1>
+            <h3>
+                Below you'll find examples using Graphql with any other language
+                using apollo client.
+            </h3>
+            <h3>
+                You can copy paste the code in your graphql playground or open
+                graphify playground to quickly test graphql API.
+            </h3>
+        </div>
+        <br />
+        <div>
+            <h1 class="text-xl font-medium italic">#Model</h1>
+            <p>
+                You can find our model schema type
+                <a href="/guide/model" class="underline">here.</a>
+            </p>
+        </div>
+        <br />
+        <div>
+            <h1 class="text-xl font-medium italic">#User Resources</h1>
+            <p>
+                You can find our user's model resolover, queries and mutations <a
+                    href="/guide/user"
+                    class="underline">here.</a
+                >
+            </p>
+        </div>
+        <br />
+        <div>
+            <h1 class="text-xl font-medium italic">#Organization Resources</h1>
+            <p>
+                You can find our organization's model resolover, queries and
+                mutations <a href="/guide/user" class="underline">here.</a>
+            </p>
+        </div>
+        <br />
+        <div>
+            <h1 class="text-xl font-medium italic">#Post Resources</h1>
+            <p>
+                You can find our post's model resolover, queries and mutations <a
+                    href="/guide/user"
+                    class="underline">here.</a
+                >
+            </p>
+        </div>
+        <br />
+        <div>
+            <h1 class="text-xl font-medium italic">#Comment Resources</h1>
+            <p>
+                You can find our comment's model resolover, queries and
+                mutations <a href="/guide/user" class="underline">here.</a>
+            </p>
+        </div>
+        <br />
+        <div>
+            <h1 class="text-base font-medium italic">
+                #Other model are comming soon!
+            </h1>
+        </div>
+    </div>
+</Layout>
