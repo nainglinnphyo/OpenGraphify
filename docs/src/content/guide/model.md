@@ -1,7 +1,5 @@
 
-# **User Model**
-<br>
-
+### **#User Model**
 ```js
 
    type User {
@@ -18,10 +16,7 @@
 
 
 ```
-<br>
-
-# **Organization Model**
-<br>
+### **#Organization Model**
 
 ```js
 
@@ -32,5 +27,4 @@
 
 
 ```
-<br>
 
