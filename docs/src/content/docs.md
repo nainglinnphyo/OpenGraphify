@@ -1,4 +1,4 @@
-#  ***#Docs***
+##  ***#Docs***
 
 1. Clone this repository.
 2. Install the necessary dependencies using `pnpm i`.
