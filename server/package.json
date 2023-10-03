@@ -24,7 +24,7 @@
     "seed": "ts-node prisma/seeder.ts"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=16.13"
   },
   "dependencies": {
     "@apollo/server": "^4.9.3",
