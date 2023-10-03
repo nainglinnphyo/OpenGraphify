@@ -25,3 +25,22 @@ export class CreateUserInput {
     organization: CreateOrganizationInput
 }
 
+@InputType()
+export class UpdateUserInput {
+
+    @Field(() => String)
+    id: string | undefined
+
+    @Field(() => String)
+    name: string | undefined
+
+    @Field(() => String)
+    email: string | undefined
+
+    @Field(() => GENDER, { nullable: true })
+    gender?: keyof typeof GENDER;
+
+    @Field(() => CreateOrganizationInput)
+    organization: CreateOrganizationInput
+}
+

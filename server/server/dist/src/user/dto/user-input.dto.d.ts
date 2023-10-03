@@ -8,3 +8,10 @@ export declare class CreateUserInput {
     gender?: keyof typeof GENDER;
     organization: CreateOrganizationInput;
 }
+export declare class UpdateUserInput {
+    id: string | undefined;
+    name: string | undefined;
+    email: string | undefined;
+    gender?: keyof typeof GENDER;
+    organization: CreateOrganizationInput;
+}
