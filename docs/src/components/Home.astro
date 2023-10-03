@@ -1,0 +1,42 @@
+---
+import { Icon } from "astro-icon";
+import Card from "./Card.astro";
+---
+
+<div
+    class="h-[calc(100vh-3.75rem)] max-w-6xl justify-around flex flex-col w-full mx-auto px-4"
+>
+    <div class="max-w-4xl mx-auto w-full">
+        <div class="flex justify-between flex-col space-y-6">
+            <h1 class="md:text-4xl text-2xl text-center font-bold leading-snug">
+                A powerful GraphQL server built with Nest.JS 🔥
+            </h1>
+            <h1 class="text-center text-lg max-w-2xl mx-auto italic">
+                developing a new GraphQL-based application or just want to
+                experiment with GraphQL queries and mutations, this project
+                offers a convenient setup.
+            </h1>
+        </div>
+    </div>
+    <div
+        class="justify-between items-center grid md:grid-cols-3 gap-2 grid-cols-2"
+    >
+        <Card
+            title="📦 Features"
+            body="A client-side GraphQL playground powered by Apollo Client for testing queries and mutations.Docker containerization for easy deployment environment consistency."
+        />
+        <Card
+            title="📄 Documentation"
+            body="For detailed information on how to use and extend this GraphQL NestJS server, check out the documentation in the docs folder."
+        />
+        <Card
+            title="🙏 Contributions"
+            body="Contributions, bug reports, and feature requests are welcome! Please open an issue or create a pull request to collaborate with the community."
+        />
+        <Card
+            className="col-start-2"
+            title="🖥️ Deploy where you want"
+            body="Ready to build and deploy your Doks site? Follow one of our guides to different deployment services."
+        />
+    </div>
+</div>
