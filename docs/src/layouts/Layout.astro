@@ -46,7 +46,7 @@ import "@fontsource-variable/jost";
 			content="https://imageupload.io/ib/uXPmZvbCSGbP0dN_1696343824.png"
 		/>
 
-		<script
+		<!-- <script
 			async
 			src="https://www.googletagmanager.com/gtag/js?id=G-GL8EBQ92BQ"
 		></script>
@@ -59,7 +59,21 @@ import "@fontsource-variable/jost";
 		  gtag('js', new Date());
 		  gtag('config', 'G-GL8EBQ92BQ');
 	  `,
-			}}></script>
+			}}></script> -->
+
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-GL8EBQ92BQ"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-XXXXXXXXXX");
+		</script>
 
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
