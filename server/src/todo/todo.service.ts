@@ -69,6 +69,42 @@ export class TodoService {
         })
     }
 
+    async findAllTodoById(id: string): Promise<TodoModel> {
+        return this.prismaService.todo.findUniqueOrThrow({
+            where: {
+                id: id
+            },
+            select: {
+                id: true,
+                task: true,
+                isComplete: true,
+                userId: true,
+                user: {
+                    select: {
+                        id: true,
+                        name: true,
+                        email: true,
+                        isActive: true,
+                        gender: true,
+                        lastUpdated: true,
+                        organizationId: true,
+                        organization: {
+                            select: {
+                                id: true,
+                                name: true
+                            }
+                        },
+                    }
+                }
+
+            }
+        })
+            .then((todo) => todo)
+            .catch((error) => {
+                throw new BadRequestException("Not Found")
+            })
+    }
+
     async createTodo(dto: CreateTodoInput): Promise<TodoModel> {
         return this.prismaService.todo.create({
             data: dto,
@@ -100,6 +136,80 @@ export class TodoService {
             .then((todo) => todo)
             .catch((error) => {
                 throw new BadRequestException(error.message || 'Something went wrong')
+            })
+    }
+
+    async completeTask(id: string): Promise<TodoModel> {
+
+        return this.prismaService.todo.findFirst({
+            where: { id: id, isComplete: false },
+        })
+            .then((todo) => {
+                return this.prismaService.todo.update({
+                    where: { id: id },
+                    data: { isComplete: true },
+                    select: {
+                        id: true,
+                        task: true,
+                        isComplete: true,
+                        userId: true,
+                        user: {
+                            select: {
+                                id: true,
+                                name: true,
+                                email: true,
+                                isActive: true,
+                                gender: true,
+                                lastUpdated: true,
+                                organizationId: true,
+                                organization: {
+                                    select: {
+                                        id: true,
+                                        name: true
+                                    }
+                                },
+                            }
+                        }
+
+                    }
+                })
+            })
+            .catch((error) => {
+                throw new BadRequestException(error.message || 'Something went wrong')
+            })
+    }
+
+    async deleteTodo(id: string): Promise<TodoModel> {
+        return this.prismaService.todo.delete({
+            where: { id: id },
+            select: {
+                id: true,
+                task: true,
+                isComplete: true,
+                userId: true,
+                user: {
+                    select: {
+                        id: true,
+                        name: true,
+                        email: true,
+                        isActive: true,
+                        gender: true,
+                        lastUpdated: true,
+                        organizationId: true,
+                        organization: {
+                            select: {
+                                id: true,
+                                name: true
+                            }
+                        },
+                    }
+                }
+
+            }
+        })
+            .then((todo) => todo)
+            .catch((error) => {
+                throw new BadRequestException("Task Not Found")
             })
     }
 }

@@ -55,7 +55,7 @@ Output 👇
 
 ```graphql
     query {
-        findAllTodo(userId: "4865eb72-4a35-4a82-99ac-a04c034e47a5") {
+        findAllTodoByUserId(userId: "4865eb72-4a35-4a82-99ac-a04c034e47a5") {
             task
             isComplete
             user {
@@ -74,7 +74,7 @@ Output 👇
 ```json
     {
         "data": {
-            "findAllTodo": [
+            "findAllTodoByUserId": [
                 {
                     "task": "task two",
                     "isComplete": false,
@@ -100,6 +100,44 @@ Output 👇
                     }
                 }
             ]
+        }
+    }   
+```
+### **#Find todo by id**
+
+```graphql
+    query {
+        findAllTodoById(id: "4865eb72-4a35-4a82-99ac-a04c034e47a5") {
+            task
+            isComplete
+            user {
+                id
+                name
+                email
+                organization {
+                    name
+                }
+            }
+        }
+    }
+```
+Output 👇
+
+```json
+    {
+        "data": {
+            "findAllTodoById":{
+                    "task": "task two",
+                    "isComplete": false,
+                    "user": {
+                    "id": "4865eb72-4a35-4a82-99ac-a04c034e47a5",
+                    "name": "NLP",
+                    "email": "nlp121@gmail.com",
+                        "organization": {
+                            "name": "Xsphere"
+                        }
+                    }
+                }
         }
     }   
 ```
@@ -142,6 +180,89 @@ Output 👇
                 }
             }
           }
+        }
+    } 
+```
+
+### **#Complete todo**
+
+```graphql
+    query {
+        completeTask(
+            id: "4865eb72-4a35-4a82-99ac-a04c034e47a5"
+            ){
+                task
+                isComplete
+                user {
+                    id
+                    name
+                    email
+                    organization {
+                        name
+                    }
+                }
+            }
+    }
+
+```
+Output 👇
+
+```json
+    {
+    "data": {
+        "completeTask": {
+        "task": "task two",
+        "isComplete": true,
+        "user": {
+            "id": "4865eb72-4a35-4a82-99ac-a04c034e47a5",
+            "name": "NLP",
+            "email": "nlp121@gmail.com",
+            "organization": {
+                "name": "Xsphere"
+                }
+            }
+          }
+        }
+    } 
+```
+### **#Delete todo**
+
+```graphql
+    query {
+        deleteTodo(
+            id: "4865eb72-4a35-4a82-99ac-a04c034e47a5"
+            ){
+                task
+                isComplete
+                user {
+                    id
+                    name
+                    email
+                    organization {
+                        name
+                    }
+                }
+            }
+    }
+
+```
+Output 👇
+
+```json
+    {
+    "data": {
+        "deleteTodo": {
+            "task": "task two",
+            "isComplete": true,
+            "user": {
+                "id": "4865eb72-4a35-4a82-99ac-a04c034e47a5",
+                "name": "NLP",
+                "email": "nlp121@gmail.com",
+                "organization": {
+                    "name": "Xsphere"
+                    }
+                }
+            }
         }
     } 
 ```

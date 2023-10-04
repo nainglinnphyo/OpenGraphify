@@ -42,8 +42,11 @@ type Organization {
 }
 
 type Query {
+  completeTask(id: String!): TodoModel!
+  deleteTodo(id: String!): TodoModel!
   deleteUser(id: String!): User!
   findAllTodo: [TodoModel!]!
+  findAllTodoById(id: String!): TodoModel!
   findAllTodoByUserId(userId: String!): [TodoModel!]!
   findAllUser: [User!]!
   findUserById(id: String!): User!

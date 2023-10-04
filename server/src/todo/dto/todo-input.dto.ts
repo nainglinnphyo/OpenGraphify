@@ -13,3 +13,11 @@ export class CreateTodoInput {
     userId: string | undefined
 
 }
+
+@InputType()
+export class CompleteTask {
+
+    @Field(() => String)
+    id: string | undefined
+
+}

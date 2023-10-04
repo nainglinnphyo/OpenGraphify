@@ -18,10 +18,27 @@ export class TodoResolver {
     return this.todoService.findAllTodoByUserId(userId)
   }
 
+  @Query(() => TodoModel)
+  async findAllTodoById(@Args('id') id: string): Promise<TodoModel> {
+    return this.todoService.findAllTodoById(id)
+  }
+
   //create todo
   @Mutation(() => TodoModel)
   async createTodo(@Args('dto') dto: CreateTodoInput): Promise<TodoModel> {
     return this.todoService.createTodo(dto)
+  }
+
+  //complete todo
+  @Query(() => TodoModel)
+  async completeTask(@Args('id') id: string): Promise<TodoModel> {
+    return this.todoService.completeTask(id)
+  }
+
+  //delete todo
+  @Query(() => TodoModel)
+  async deleteTodo(@Args('id') id: string): Promise<TodoModel> {
+    return this.todoService.deleteTodo(id)
   }
 
 }
