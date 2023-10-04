@@ -12,10 +12,12 @@
   "dependencies": {
     "@astrojs/react": "^3.0.2",
     "@astrojs/tailwind": "^5.0.0",
+    "@astrojs/vercel": "^5.0.1",
     "@fontsource-variable/jost": "^5.0.9",
     "@fontsource/jost": "^5.0.8",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
+    "@vercel/analytics": "^1.0.2",
     "astro": "^3.2.1",
     "astro-icon": "^0.8.1",
     "react": "^18.0.0",

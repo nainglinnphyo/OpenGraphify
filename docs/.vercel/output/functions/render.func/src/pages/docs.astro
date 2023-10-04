@@ -1,0 +1,16 @@
+---
+import Header from "../components/Header.astro";
+import DocsMd from "../content/docs.md";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="OG | Docs">
+    <Header />
+    <br />
+    <br />
+    <div class="max-w-4xl justify-around flex flex-col w-full mx-auto px-4">
+        <div class="prose prose-invert">
+            <DocsMd />
+        </div>
+    </div>
+</Layout>
