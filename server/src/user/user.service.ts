@@ -1,4 +1,4 @@
-import { PrismaService } from '@app/prisma.service';
+import { PrismaService } from '@app/prisma/prisma.service';
 import { BadRequestException, ConflictException, Injectable } from '@nestjs/common'
 import { User } from './model/user.model';
 import { CreateUserInput, UpdateUserInput } from './dto/user-input.dto';
@@ -75,6 +75,7 @@ export class UserService {
                         }
                     }
                 },
+                
                 gender: dto.gender
             },
             select: {

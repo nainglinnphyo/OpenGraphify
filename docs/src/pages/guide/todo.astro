@@ -1,0 +1,32 @@
+---
+import Header from "../../components/Header.astro";
+import Layout from "../../layouts/Layout.astro";
+import TodoContent from "../../content/guide/todo.md";
+---
+
+<Layout title="Open Graphify">
+    <Header />
+    <br />
+    <br />
+    <div class="max-w-4xl justify-around flex flex-col w-full mx-auto px-4">
+        <div class="space-y-3">
+            <h1 class="text-2xl font-bold">Guide</h1>
+            <h3>
+                Below you'll find examples using Graphql with any other language
+                using apollo client.
+            </h3>
+            <h3>
+                You can copy paste the code in your graphql playground or open
+                graphify playground to quickly test graphql API.
+            </h3>
+        </div>
+        <br />
+        <br />
+        <div>
+            <!-- user  -->
+            <div class="prose prose-invert py-4">
+                <TodoContent />
+            </div>
+        </div>
+    </div>
+</Layout>

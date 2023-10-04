@@ -8,6 +8,8 @@ import { join } from 'path'
 import { ConfigModule } from './config/config.module'
 import { UserModule } from './user/user.module'
 import { EmailModule } from './email/email.module'
+import { TodoModule } from './todo/todo.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
     imports: [
@@ -19,6 +21,8 @@ import { EmailModule } from './email/email.module'
         EmailModule,
         ConfigModule,
         UserModule,
+        TodoModule,
+        PrismaModule,
     ],
     controllers: [AppController],
     providers: [AppService],

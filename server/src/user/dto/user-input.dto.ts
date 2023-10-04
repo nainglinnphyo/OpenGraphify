@@ -23,6 +23,7 @@ export class CreateUserInput {
 
     @Field(() => CreateOrganizationInput)
     organization: CreateOrganizationInput
+
 }
 
 @InputType()

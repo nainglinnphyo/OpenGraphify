@@ -25,6 +25,20 @@
         name: String!
     }
 
-
 ```
+
+### **#Todo Model**
+
+```js
+   type TodoModel {
+        id: ID!
+        isComplete: Boolean!
+        task: String!
+        user: User!
+        userId: String!
+    }
+```
+
+
+
 

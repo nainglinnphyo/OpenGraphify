@@ -6,6 +6,12 @@ input CreateOrganizationInput {
   name: String!
 }
 
+input CreateTodoInput {
+  isComplete: Boolean
+  task: String!
+  userId: String!
+}
+
 input CreateUserInput {
   email: String!
   gender: GENDER
@@ -24,6 +30,7 @@ enum GENDER {
 }
 
 type Mutation {
+  createTodo(dto: CreateTodoInput!): TodoModel!
   createUser(createData: CreateUserInput!): User!
   updateUser(updateData: UpdateUserInput!): User!
 }
@@ -36,8 +43,19 @@ type Organization {
 
 type Query {
   deleteUser(id: String!): User!
+  findAllTodo: [TodoModel!]!
+  findAllTodoByUserId(userId: String!): [TodoModel!]!
   findAllUser: [User!]!
   findUserById(id: String!): User!
+}
+
+"""Todo Model"""
+type TodoModel {
+  id: ID!
+  isComplete: Boolean!
+  task: String!
+  user: User!
+  userId: String!
 }
 
 input UpdateUserInput {
