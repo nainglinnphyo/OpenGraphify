@@ -6,7 +6,7 @@
 4. Generate prisma types and seed data using using `npx prisma generate` && `npx prisma db seed`
 5. Start the server using `pnpm run:dev` or use Docker for containerized development.
 6. Access the client-side playground at `http://localhost:3000/graphql` and begin exploring your API.
-7. For more about documation [here](https://opengraphify.vercel.app/guide)
+7. For more about documentation [here](https://opengraphify.vercel.app/guide)
 
 ## 🧩 Customize and Extend
 
