@@ -10,6 +10,8 @@ import { UserModule } from './user/user.module'
 import { EmailModule } from './email/email.module'
 import { TodoModule } from './todo/todo.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { PostModule } from './post/post.module';
+import { RedirectMiddleware } from './middleware/redirect.middleware'
 
 @Module({
     imports: [
@@ -17,18 +19,21 @@ import { PrismaModule } from './prisma/prisma.module';
             driver: ApolloDriver,
             autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
             sortSchema: true,
+            path: "/graphql"
         }),
         EmailModule,
         ConfigModule,
         UserModule,
         TodoModule,
         PrismaModule,
+        PostModule,
     ],
     controllers: [AppController],
     providers: [AppService],
 })
 export class AppModule {
     configure(consumer: MiddlewareConsumer) {
-        consumer.apply(LoggerMiddleware).forRoutes('*')
+        consumer.apply(LoggerMiddleware).forRoutes('*');
+        // consumer.apply(RedirectMiddleware).forRoutes('*');
     }
 }

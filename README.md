@@ -7,7 +7,7 @@ This repository provides a powerful GraphQL server built with NestJS, along with
 - GraphQL Server using NestJS for building robust, maintainable APIs.
 - A client-side GraphQL playground powered by Apollo Client for testing queries and mutations.
 - Scalable folder structure for organizing your GraphQL schema, resolvers, and services.
-- JWT-based authentication system for securing your API endpoints (optional).
+- JWT-based authentication system for securing your API endpoints (currently not implement).
 - Sample GraphQL schema and resolvers to get you started quickly.
 - Docker containerization for easy deployment and development environment consistency.
 
@@ -27,7 +27,7 @@ Feel free to modify and extend this project to suit your specific needs. You can
 
 ## 📄 Documentation
 
-For detailed information on how to use and extend this GraphQL NestJS server, check out the documentation in the `docs` folder.
+For detailed information on how to use and extend this GraphQL NestJS server, check out the documentation `cd docs && pnpm i && pnpm dev`.
 
 ## 🙏 Contributions
 

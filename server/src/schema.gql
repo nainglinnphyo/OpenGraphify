@@ -2,8 +2,27 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Comment {
+  body: String!
+  id: ID!
+  user: UserInPost!
+  userId: String!
+}
+
+input CreateCommentInput {
+  body: String!
+  postId: String!
+  userId: String!
+}
+
 input CreateOrganizationInput {
   name: String!
+}
+
+input CreatePostInput {
+  body: String!
+  title: String!
+  userId: String!
 }
 
 input CreateTodoInput {
@@ -30,8 +49,11 @@ enum GENDER {
 }
 
 type Mutation {
+  createComment(dto: CreateCommentInput!): Comment!
+  createPost(dto: CreatePostInput!): Post!
   createTodo(dto: CreateTodoInput!): TodoModel!
   createUser(createData: CreateUserInput!): User!
+  updatePost(dto: UpdatePostInput!): Post!
   updateUser(updateData: UpdateUserInput!): User!
 }
 
@@ -39,6 +61,23 @@ type Mutation {
 type Organization {
   id: ID!
   name: String!
+}
+
+type Post {
+  body: String!
+  id: ID!
+  title: String!
+  user: UserInPost!
+  userId: String!
+}
+
+type PostWithComment {
+  body: String
+  comment: [Comment!]!
+  id: ID
+  title: String
+  user: UserInPost
+  userId: String
 }
 
 type Query {
@@ -50,6 +89,8 @@ type Query {
   findAllTodoByUserId(userId: String!): [TodoModel!]!
   findAllUser: [User!]!
   findUserById(id: String!): User!
+  postWithComment(postId: String!): PostWithComment!
+  posts: [Post!]!
 }
 
 """Todo Model"""
@@ -59,6 +100,12 @@ type TodoModel {
   task: String!
   user: User!
   userId: String!
+}
+
+input UpdatePostInput {
+  body: String!
+  postId: String!
+  title: String!
 }
 
 input UpdateUserInput {
@@ -80,4 +127,10 @@ type User {
   organization: Organization!
   organizationId: String!
   password: String!
+}
+
+"""User In Post"""
+type UserInPost {
+  id: ID!
+  name: String!
 }
