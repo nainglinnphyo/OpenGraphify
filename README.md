@@ -41,4 +41,4 @@ This project is licensed under the MIT License.
 
 - [Naing Linn Phyo](https://nainglinnphyo.vercel.app)
 
-Happy GraphQL coding! 🚀
+Happy GraphQL coding!🔥
